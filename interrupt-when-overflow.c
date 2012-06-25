@@ -4,7 +4,7 @@
 #include <util/delay.h>
 
 
-ISR(TIMER1_COMPA_vect)
+ISR(TIMER1_OVF_vect)
 {
 	/* Reverse PORTD at every 1 second */
 	PORTD ^= 0xff;
@@ -17,11 +17,9 @@ int main()
 	
 	/* Initialize timers */
 	TCCR1A = 0x00;
-	TCCR1B |= (1 << WGM12) | (1 << CS12);
+	TCCR1B |= (1 << CS12);
 	
-	/* enable comparison between Timer Counter (TCNT)
-	 * and Output Compare Register (OCR) 
-	 */
+	/* enable overflow flag */
 	TIMSK |= (1 << TOIE1); 
 	
 
