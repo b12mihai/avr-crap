@@ -1,0 +1,11 @@
+avrusbboot-ret.2008-03-4
+-----------------
+- fixed signed/unsigned char pagesize report error in software/
+
+avrusbboot-ret.2008-03-2
+-----------------
+- updated usb driver code to allow differnt xtal frequencies
+
+avrusbboot.2006-06-25
+-----------------
+- first public version

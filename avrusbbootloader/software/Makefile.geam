@@ -1,0 +1,11 @@
+CFLAGS+=-g -Wall -pedantic
+LFLAGS+=-lusb
+
+all: avrusbboot.exe
+
+clean:
+	rm *.o
+	rm avrusbboot.exe
+
+avrusbboot.exe: main.cpp cflashmem.o cpage.o cbootloader.o
+	i586-mingw32msvc-g++ $(CFLAGS) main.cpp cflashmem.cpp cpage.cpp cbootloader.cpp -o avrusbboot.exe $(LFLAGS)
