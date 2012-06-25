@@ -1,4 +1,4 @@
-all: adc.hex interrupt.hex onesecperiod.hex interrupt-when-overflow.hex
+all: adc.hex interrupt.hex onesecperiod.hex interrupt-when-overflow.hex pwm.hex
 
 adc.elf: adc.c	
 	avr-gcc -mmcu=atmega16 -Os -Wall  -o adc.elf adc.c
@@ -28,6 +28,12 @@ interrupt-when-overflow.hex: interrupt-when-overflow.elf
 	avr-objcopy  -j .text -j .data -O ihex  interrupt-when-overflow.elf interrupt-when-overflow.hex
 	avr-size interrupt-when-overflow.elf
 
+pwm.elf: pwm.c	
+	avr-gcc -mmcu=atmega16 -Os -Wall  -o pwm.elf pwm.c
+
+pwm.hex: pwm.elf
+	avr-objcopy  -j .text -j .data -O ihex  pwm.elf pwm.hex
+	avr-size pwm.elf
 
 
 clean:
