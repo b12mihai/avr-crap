@@ -1,4 +1,4 @@
 avr-crap
 ========
 
-AVR Crap Code created in CET100
+AVR Crap Code using ATMEGA16
