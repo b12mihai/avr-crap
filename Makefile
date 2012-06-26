@@ -4,6 +4,9 @@ SRCS = $(wildcard *.c)
 ELFS = $(patsubst %.c, %.elf, $(SRCS))
 HEXS = $(patsubst %.c, %.hex, $(SRCS))
 
+all: $(HEXS)
+compile: $(ELFS)
+
 %.elf: %.c
 	avr-gcc -mmcu=$(MMCU) $(CFLAGS) -o $@ $<
 %.hex: %.elf
