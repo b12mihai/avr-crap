@@ -1,3 +1,14 @@
+//
+//
+//  Library of low-level functions for the ATMEGA16 microcontroller
+//
+//  Use at your own risk
+//
+//
+
+#ifndef _ATMEGA16_AWESOME_FUNCTIONS_
+#define _ATMEGA16_AWESOME_FUNCTIONS_
+
 // PWM stuff
 void setup_pwm_0(uint8_t duty_cycle);
 void set_pwm_0(uint8_t duty_cycle);
@@ -22,3 +33,17 @@ void clear_interrupt_1();
 
 void setup_interrupt_2(uint8_t mode);
 void clear_interrupt_2();
+
+//
+// Trigger modes for external interrupts
+//
+// Warning: 
+// * INT2 can trigger only on falling or rising edge
+// (Read the datasheet)
+//
+#define INT_TRIGGER_LOW		0
+#define INT_TRIGGER_CHANGE	1
+#define INT_TRIGGER_FALLING	2
+#define INT_TRIGGER_RISING	3
+
+#endif
