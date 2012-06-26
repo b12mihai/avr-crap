@@ -13,6 +13,6 @@ compile: $(ELFS)
 	avr-objcopy -j .text -j .data -O ihex $< $@
 	avr-size $<
 
-.PHONY: clean
+.PHONY: clean all compile
 clean:
 	rm -rf *.elf *.hex *.swp *.swo *.o
