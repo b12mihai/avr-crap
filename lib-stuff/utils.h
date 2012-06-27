@@ -34,6 +34,14 @@ void clear_interrupt_1();
 void setup_interrupt_2(uint8_t mode);
 void clear_interrupt_2();
 
+//Sensor reading
+
+//INPUT: bits = register linked to sensors
+//		 n = number of sensors
+//		 b = a pointer to value of every sensor read
+
+void read_line_sensors(uint8_t bits, uint8_t n, uint8_t *b);
+
 //
 // Trigger modes for external interrupts
 //

@@ -114,3 +114,16 @@ void setup_interrupt_2(uint8_t mode){
 void clear_interrupt_2(){
 	GICR &= ~(1 << INT2);
 }
+
+//
+//
+//Set of functions for sensors
+//
+//
+void read_sensors(uint8_t bits, uint8_t n, uint8_t *b)
+{
+	uint8_t i;
+
+	for(i = 0; i < n; i++) 
+		b[i] = bits & (1 << i);
+}
