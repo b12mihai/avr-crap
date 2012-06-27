@@ -7,33 +7,32 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-uint8_t b0, b1, b2, b3, b4, b5;
-
-void setup_bits(uint8_t bits)
+void setup_bits(uint8_t bits, uint8_t *b, uint8_t n)
 {
-	b0 = bits & 1;
-	b1 = bits & 2;
-	b2 = bits & 4;
-	b3 = bits & 8;
-	b4 = bits & 16;
-	b5 = bits & 32;
+	uint8_t i;
+
+	for(i = 0; i < n; i++) {
+		b[i] = bits & (1 << i);
+	}
 }
 
-void print_bargraph()
+uint8_t print_bargraph(uint8_t *b)
 {
-	PORTA = 0x00;
-	if(b0) 
-		PORTA |= 1;
-	if(b1)
-		PORTA |= (1 << 1);
-	if(b2)
-		PORTA |= (1 << 2);
-	if(b3)
-		PORTA |= (1 << 3);
-	if(b4)
-		PORTA |= (1 << 4);
-	if(b5)
-		PORTA |= (1 << 5);
+	uint8_t output_bits = 0x00;
+
+	if(b[0]) 
+		output_bits |= 1;
+	if(b[1])
+		output_bits |= (1 << 1);
+	if(b[2])
+		output_bits |= (1 << 2);
+	if(b[3])
+		output_bits |= (1 << 3);
+	if(b[4])
+		output_bits |= (1 << 4);
+	if(b[5])
+		output_bits |= (1 << 5);
+	return output_bits;
 }
 	
 int main()
@@ -45,10 +44,11 @@ int main()
 	PORTA = 0x00;
 	PORTD = 0x00;
 
+	uint8_t b[6];
 
 	while(1) {
-		setup_bits(PINC);
-		print_bargraph();
+		setup_bits(PINC, b, 6);
+		PORTA = print_bargraph(b);
 		_delay_ms(100);
 	}
 
